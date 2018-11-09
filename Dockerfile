@@ -1,22 +1,25 @@
-FROM phusion/baseimage:0.11
+FROM alpine:3.5
 
-MAINTAINER ytzelf
-ENV ARCH=amd64 \
-    RCLONE_VERSION=current \
-    RCLONE_DOWNLOAD=http://downloads.rclone.org
+MAINTAINER Philipp Schmitt <philipp@schmitt.co>
 
-# CMD ["/sbin/my_init"]
+ENV RCLONE_VERSION=current
+ENV ARCH=amd64
 
-RUN apt-get update \
-    && apt-get --assume-yes install wget unzip \
+RUN apk --no-cache add ca-certificates fuse wget \
     && cd /tmp \
-    && wget -q ${RCLONE_DOWNLOAD}/rclone-${RCLONE_VERSION}-linux-${ARCH}.zip \
+    && wget -q http://downloads.rclone.org/rclone-${RCLONE_VERSION}-linux-${ARCH}.zip \
     && unzip /tmp/rclone-${RCLONE_VERSION}-linux-${ARCH}.zip \
     && mv /tmp/rclone-*-linux-${ARCH}/rclone /usr/bin \
-    && rm -r /tmp/rclone-*-linux-${ARCH}/ \
-    && apt-get --assume-yes purge wget unzip
+    && rm -r /tmp/rclone* \
+    && addgroup rclone \
+    && adduser -h /config -s /bin/ash -G rclone -D rclone
+    && mkdir /data
 
-RUN apt-get --assume-yes autoremove && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+USER rclone
+
+VOLUME ["/config/rclone.conf"]
+VOLUME ["/data"]
 
 ENTRYPOINT ["/usr/bin/rclone"]
+
 CMD ["--version"]
