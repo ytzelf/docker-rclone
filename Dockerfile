@@ -5,7 +5,7 @@ ENV ARCH=amd64 \
     RCLONE_VERSION=current \
     RCLONE_DOWNLOAD=http://downloads.rclone.org
 
-CMD ["/sbin/my_init"]
+# CMD ["/sbin/my_init"]
 
 RUN apt-get update \
     && apt-get --assume-yes install wget \
@@ -17,3 +17,6 @@ RUN apt-get update \
     && apt-get purge wget
 
 RUN apt-get --assume-yes autoremove && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ENTRYPOINT ["/usr/bin/rclone"]
+CMD ["--version"]
