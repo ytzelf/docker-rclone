@@ -1,6 +1,6 @@
 FROM alpine:3.5
 
-MAINTAINER Philipp Schmitt <philipp@schmitt.co>
+MAINTAINER ytzelf
 
 ENV RCLONE_VERSION=current
 ENV ARCH=amd64
@@ -12,7 +12,7 @@ RUN apk --no-cache add ca-certificates fuse wget \
     && mv /tmp/rclone-*-linux-${ARCH}/rclone /usr/bin \
     && rm -r /tmp/rclone* \
     && addgroup rclone \
-    && adduser -h /config -s /bin/ash -G rclone -D rclone
+    && adduser -h /config -s /bin/ash -G rclone -D rclone \
     && mkdir /data
 
 USER rclone
