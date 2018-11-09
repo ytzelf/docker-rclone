@@ -7,7 +7,7 @@ ENV ARCH=amd64 \
 
 CMD ["/sbin/my_init"]
 
-RUN apt-get  update \
+RUN apt-get update \
     && apt-get --assume-yes install wget \
     && cd /tmp \
     && wget -q ${RCLONE_DOWNLOAD}/rclone-${RCLONE_VERSION}-linux-${ARCH}.zip \
