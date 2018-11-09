@@ -14,6 +14,6 @@ RUN apt-get update \
     && unzip /tmp/rclone-${RCLONE_VERSION}-linux-${ARCH}.zip \
     && mv /tmp/rclone-*-linux-${ARCH}/rclone /usr/bin \
     && rm -r /tmp/rclone-*-linux-${ARCH}/ \
-	&& apt-get purge wget
+    && apt-get purge wget
 
 RUN apt-get --assume-yes autoremove && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
