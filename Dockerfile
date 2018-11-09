@@ -13,8 +13,4 @@ RUN cd /tmp \
     && mv /tmp/rclone-*-linux-${ARCH}/rclone /usr/bin \
     && rm -r /tmp/rclone-*-linux-${ARCH}/
 
-RUN mkdir -p /etc/my_init.d
-COPY ipp.sh /etc/my_init.d/ipp.sh
-RUN chmod +x /etc/my_init.d/ipp.sh
-
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
