@@ -1,6 +1,7 @@
 FROM phusion/baseimage:0.11
 
 MAINTAINER ytzelf
+
 ENV ARCH=amd64 \
     RCLONE_VERSION=current \
     RCLONE_DOWNLOAD=http://downloads.rclone.org
@@ -17,6 +18,3 @@ RUN apt-get update \
     && apt-get --assume-yes purge wget unzip
 
 RUN apt-get --assume-yes autoremove && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# ENTRYPOINT ["/usr/bin/rclone"]
-# CMD ["--version"]
