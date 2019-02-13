@@ -4,8 +4,7 @@ MAINTAINER ytzelf
 
 ENV ARCH=amd64 \
     RCLONE_VERSION=current \
-    RCLONE_DOWNLOAD=http://downloads.rclone.org \
-    DISABLE_CRON=1
+    RCLONE_DOWNLOAD=http://downloads.rclone.org 
 
 CMD ["/sbin/my_init"]
 
