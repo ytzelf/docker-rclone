@@ -3,7 +3,7 @@ FROM phusion/baseimage:0.11
 MAINTAINER ytzelf
 
 ENV ARCH=amd64 \
-    RCLONE_VERSION=1.47.0 \
+    RCLONE_VERSION=1.45 \
     RCLONE_DOWNLOAD=http://downloads.rclone.org
 
 CMD ["/sbin/my_init"]
