@@ -4,7 +4,7 @@ MAINTAINER ytzelf
 
 ENV ARCH=amd64
 ENV RCLONE_VERSION=1.50.1
-ENV RCLONE_DOWNLOAD=http://downloads.rclone.org
+ENV RCLONE_DOWNLOAD='http://downloads.rclone.org'
 
 CMD ["/sbin/my_init"]
 
